@@ -1,0 +1,38 @@
+version: '3'
+services:
+  nginx:
+   container_name: centralauth_nginx
+   image: nginx:1.13
+   restart: always
+   ports:
+     - 8080:80
+     - 443:443
+   volumes:
+     - ./nginx/conf.d:/etc/nginx/conf.d
+   depends_on:
+     - app
+ 
+  management_mysql:
+   container_name: management_mysql
+   image: mysql/mysql-server:5.7
+   environment:
+     - MYSQL_DATABASE=management
+     - MYSQL_USER=feiyu4fun
+     - MYSQL_PASSWORD=feiyu4fun
+     - MYSQL_ROOT_PASSWORD=fytech
+     - MYSQL_ROOT_HOST=%
+   restart: always
+   
+  app:
+    container_name: app
+    restart: always
+    build: ./app
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    environment:
+      - management.datasource.url=jdbc:mysql://management_mysql:3306/management?serverTimezone=UTC&useLegacyDatetimeCode=false&useSSL=false&allowPublicKeyRetrieval=true
+    expose:
+      - 8080
+    depends_on:
+      - management_mysql
