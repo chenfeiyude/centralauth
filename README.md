@@ -65,13 +65,22 @@ centralauth_app           latest              868b9adb4f52        20 minutes ago
 docker image rm centralauth_app -f
 ```
 
+## Remove all stopped containers, dangling images and all unused networks
+```
+docker system prune
+```
+
+## Remove all unused volumns
+```
+docker system prune --volumes
+```
+
 # URL
 
-## Running individually
-http://localhost:8080/app/
+http://localhost:8080/centralauth/
 
-## Running via docker
-http://localhost/app/
+e.g.
+http://localhost:8080/centralauth/api/auth/login
 
 
 # Sample nginx 
