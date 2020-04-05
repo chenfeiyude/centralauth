@@ -59,10 +59,10 @@ docker-compose down -v
 docker image ls
 
 REPOSITORY                 TAG                 IMAGE ID            CREATED             SIZE
-iamdoggy_iamdoggy_app      latest              868b9adb4f52        20 minutes ago      514MB
+centralauth_app           latest              868b9adb4f52        20 minutes ago      514MB
 
 
-docker image rm iamdoggy_iamdoggy_app -f
+docker image rm centralauth_app -f
 ```
 
 # URL
@@ -82,17 +82,11 @@ server {
     listen 80;
     server_name feiyu4fun.com;
 
-    location /iamdoggy {
-        # root /var/www/iamdoggy_client/;
-        alias /var/www/iamdoggy_client/;
-        try_files $uri $uri/ /index.html;
-    }
-
-    location /iamdoggy/main/ {
+    location /centralauth {
         proxy_set_header X-Forwarded-Host $host;
         proxy_set_header X-Forwarded-Server $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_pass http://127.0.0.1:8080/iamdoggy/;
+        proxy_pass http://127.0.0.1:8080/centralauth/;
         # add_header Access-Control-Allow-Origin '*';
         add_header Access-Control-Allow-Origin 'http://www.feiyu4fun.com';
         add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
@@ -106,8 +100,8 @@ server {
         }
     }
 
-    access_log /home/ec2-user/iamdoggy/logs/access.log;
-    error_log /home/ec2-user/iamdoggy/logs/error.log;
+    access_log /home/ec2-user/centralauth/logs/access.log;
+    error_log /home/ec2-user/centralauth/logs/error.log;
 }
 
 ```
