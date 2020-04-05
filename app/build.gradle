@@ -38,13 +38,10 @@ buildscript {
     }
 }
 
-plugins {
-	id 'org.springframework.boot' version '2.1.4.RELEASE'
-	id 'java'
-	id 'war'
-	id 'eclipse'
-}
-
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+apply plugin: 'idea'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'docker'
 
