@@ -30,13 +30,13 @@ build to war and deployed to docker container
 ## Build project 
 
 ```
-gradle clean build
+gradlew build
 ```
 
 ## Build && Run docker locally
 
 ```
-gradle clean build && docker-compose build && docker-compose up
+gradlew build && docker-compose build && docker-compose up
 ```
 
 # Stop and Clean
