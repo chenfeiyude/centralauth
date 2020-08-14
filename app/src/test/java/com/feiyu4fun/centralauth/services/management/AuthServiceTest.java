@@ -4,8 +4,10 @@ import static org.junit.Assert.*;
 
 import com.feiyu4fun.centralauth.dtos.management.UserDTO;
 import com.feiyu4fun.centralauth.enums.UserState;
+import com.feiyu4fun.centralauth.models.request.AuthUser;
 import org.apache.http.auth.AuthenticationException;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,7 @@ public class AuthServiceTest {
 	
 	@Autowired
 	private AuthService authService;
-	
+
 	@Test
 	public void loginPass() throws AuthenticationException {
 		UserDTO userDTO = authService.login("chenfeiyu0402@gmail.com", "123");
